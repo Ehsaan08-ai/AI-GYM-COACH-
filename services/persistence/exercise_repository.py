@@ -1,6 +1,7 @@
 import sqlite3
-import streamlit as st
 from pathlib import Path
+
+import streamlit as st
 
 _DB_PATH = str(Path(__file__).parent.parent.parent / "data.db")
 
