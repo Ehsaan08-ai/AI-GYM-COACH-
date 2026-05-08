@@ -9,7 +9,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from streamlit_webrtc import VideoProcessorBase
 
-from detectors.biceps_curls import BicepCurlDetector
+from detectors.biceps_curls import BicepsCurlDetector
 from detectors.lunges import LungesDetector
 from detectors.pushup import PushUpDetector
 from detectors.shoulder_press import ShoulderPressDetector
@@ -40,7 +40,7 @@ class VideoProcessorClass(VideoProcessorBase):
         self._detectors = {
             "Squats": SquatDetector(),
             "Push-ups": PushUpDetector(),
-            "Biceps Curls (Dumbbell)": BicepCurlDetector(),
+            "Biceps Curls (Dumbbell)": BicepsCurlDetector(),
             "Shoulder Press": ShoulderPressDetector(),
             "Lunges": LungesDetector(),
         }

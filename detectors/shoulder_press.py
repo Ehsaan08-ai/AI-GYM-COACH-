@@ -54,10 +54,10 @@ class ShoulderPressDetector(BaseExercise):
         )
 
         if key_landmarks_visible:
-            if elbow_angle < self.UP_THRESHOLD:
+            if elbow_angle > self.UP_THRESHOLD:
                 self.stage = "up"
 
-            if elbow_angle > self.DOWN_THRESHOLD and self.stage == "down":
+            if elbow_angle < self.DOWN_THRESHOLD and self.stage == "up":
                 self.stage = "down"
                 self.reps += 1
 

@@ -2,7 +2,7 @@ import math
 from core.base_exercise import BaseExercise
 
 
-class BicepCurlDetector(BaseExercise):
+class BicepsCurlDetector(BaseExercise):
     UP_THRESHOLD = 50
     DOWN_THRESHOLD = 160
     MIN_VISIBILITY = 0.7
@@ -10,10 +10,10 @@ class BicepCurlDetector(BaseExercise):
     SWING_THRESHOLD = 15
 
     LEFT_SHOULDER = 11
-    RIGHT_SHOULDER = 12
     LEFT_ELBOW = 13
-    RIGHT_ELBOW = 14
     LEFT_WRIST = 15
+    RIGHT_SHOULDER = 12
+    RIGHT_ELBOW = 14
     RIGHT_WRIST = 16
     LEFT_HIP = 23
     RIGHT_HIP = 24
@@ -56,7 +56,7 @@ class BicepCurlDetector(BaseExercise):
             if elbow_angle < self.UP_THRESHOLD:
                 self.stage = "up"
 
-            if elbow_angle > self.DOWN_THRESHOLD and self.stage == "down":
+            if elbow_angle > self.DOWN_THRESHOLD and self.stage == "up":
                 self.stage = "down"
                 self.reps += 1
 
@@ -82,12 +82,12 @@ class BicepCurlDetector(BaseExercise):
         dx = shoulder_mid_x - hip_mid_x
         dy = shoulder_mid_y - hip_mid_y
 
-        torso_angle_from_vertical = self._self_angle(dx, dy)
+        torso_angle_from_vertical = self._safe_angle(dx, dy)
 
         if torso_angle_from_vertical <= self.SWING_THRESHOLD:
-            swing_status = "NO SWING DETECTED"
+            swing_status = "NO SWING"
         else:
-            swing_status = "SWING DETECTED"
+            swing_status = "SWINGING"
 
         return {
             "reps": self.reps,
@@ -96,5 +96,5 @@ class BicepCurlDetector(BaseExercise):
             "swing_status": swing_status,
         }
 
-    def _self_angle(self, dx, dy):
+    def _safe_angle(self, dx, dy):
         return math.degrees(math.atan2(abs(dx), abs(dy))) if dy != 0 else 0.0
