@@ -8,6 +8,7 @@ from services.config.workout_config import EXERCISE_OPTIONS
 from services.persistence.exercise_repository import init_db
 from services.state.session_defaults import initial_session_defaults
 from services.ui.style_loader import inject_local_font, inject_webrtc_styles, load_css
+from services.vision.exercise_video_processor import VideoProcessorClass
 
 
 def main():
@@ -153,7 +154,7 @@ def main():
         context = webrtc_streamer(
             key="exercise-analysis",
             mode=WebRtcMode.SENDRECV,
-            video_processor_factory=None,
+            video_processor_factory=VideoProcessorClass,
             rtc_configuration={
                 "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
             },
@@ -161,9 +162,9 @@ def main():
             async_processing=True,
         )
 
-    st.markdown("#### Workout History")
+        inject_webrtc_styles()
 
-    inject_webrtc_styles()
+    st.markdown("#### Workout History")
 
 
 if __name__ == "__main__":
