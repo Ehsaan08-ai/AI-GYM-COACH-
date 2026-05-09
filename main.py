@@ -16,6 +16,9 @@ from groq import Groq
 from services.coaching.llm import LLMCoach
 from services.coaching.tts import TextToSpeech
 from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def main():
@@ -120,7 +123,6 @@ def main():
 
             if end_session_button:
                 st.session_state.workout_started = False
-                st.rerun()
 
                 if st.session_state.voice_pipeline:
                     result = st.session_state.voice_pipeline.process_event(
@@ -131,6 +133,8 @@ def main():
                             st.session_state.audio_to_play,
                             st.session_state.coach_feedback,
                         ) = result
+
+                st.rerun()
 
         if workout_started:
             st.divider()
