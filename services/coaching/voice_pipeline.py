@@ -16,8 +16,8 @@ class VoicePipeline:
             depth = metrics.get("depth_status", "")
             back_angle = metrics.get("back_angle", 180)
 
-            if depth == "TOO_HIGH":
-                return "The user's squat is not deep enough - knees are not bending sufficiently."
+            if depth == "TOO HIGH":
+                return "The user's squat is not deep enough — knees are not bending sufficiently."
 
             if isinstance(back_angle, (int, float)) and back_angle < 130:
                 return "The user is leaning too far forward during the squat."
@@ -30,17 +30,19 @@ class VoicePipeline:
                 return "The user's body is not straight during the push-up."
 
             if hip_status == "SAGGING":
-                return "The user's hips are sagging down during the push-up"
+                return "The user's hips are sagging down during the push-up."
 
-            if hip_status == "PIKED_UP":
-                return "The user's hips are too high - lower them to form a strainght line."
+            if hip_status == "PIKED UP":
+                return (
+                    "The user's hips are too high — lower them to form a straight line."
+                )
 
         elif exercise == "Biceps Curls (Dumbbell)":
             swing = metrics.get("swing_status", "")
             shoulder = metrics.get("shoulder_status", "")
 
             if swing == "SWINGING":
-                return "The user is swinging their torso during the curl - keep the body still."
+                return "The user is swinging their torso during the curl — keep the body still."
 
             if shoulder == "ELBOW DRIFTING":
                 return (
@@ -87,6 +89,8 @@ class VoicePipeline:
 
         text = self.llm.give_feedback(event, issue)
         voice = self.tts.speak(text)
+
+        self.last_spoken_at = now
 
         return voice, text
 
