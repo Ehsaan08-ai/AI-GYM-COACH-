@@ -29,7 +29,7 @@ Whether you're doing squats, push-ups, or curls — AI Gym Coach sees your form,
 
 - 📸 **Real-Time Pose Detection** — Tracks 33 body landmarks at up to 30 FPS via your webcam using MediaPipe Pose.
 - 🔢 **Automatic Rep Counting** — Intelligently counts repetitions using joint angle analysis across multiple exercises.
-- 🗣️ **AI Voice Coaching** — Generates personalized motivational feedback using Groq (LLaMA) and reads it aloud via gTTS.
+- 🗣️ **AI Voice Coaching** — Generates personalized motivational feedback using Groq (Whisper) and reads it aloud via gTTS.
 - 📊 **Workout History & Analytics** — Stores sessions in SQLite; view aggregated stats with pandas-powered data tables.
 - 🔐 **User Authentication** — Secure login and registration with per-user exercise history tracking.
 - 🎨 **Custom UI** — Dark-themed, branded interface built with custom CSS injected into Streamlit.
@@ -38,19 +38,19 @@ Whether you're doing squats, push-ups, or curls — AI Gym Coach sees your form,
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Frontend / UI** | [Streamlit](https://streamlit.io/) + Custom CSS |
-| **Real-Time Video** | [streamlit-webrtc](https://github.com/whitphx/streamlit-webrtc) |
-| **Pose Estimation** | [MediaPipe](https://mediapipe.dev/) (Pose Landmarker) |
-| **Computer Vision** | [OpenCV](https://opencv.org/) (Headless) |
-| **AI Coaching (LLM)** | [Groq API](https://groq.com/) — LLaMA 3 |
-| **Text-to-Speech** | [gTTS](https://pypi.org/project/gTTS/) (Google Text-to-Speech) |
-| **Data Processing** | [Pandas](https://pandas.pydata.org/) |
-| **Database** | SQLite3 (via Python's built-in `sqlite3`) |
-| **Config Management** | [python-dotenv](https://pypi.org/project/python-dotenv/) |
-| **Language** | Python 3.10+ |
-| **Landing Page** | HTML5, CSS3, deployed on [Vercel](https://vercel.com/) |
+| Layer                 | Technology                                                      |
+| --------------------- | --------------------------------------------------------------- |
+| **Frontend / UI**     | [Streamlit](https://streamlit.io/) + Custom CSS                 |
+| **Real-Time Video**   | [streamlit-webrtc](https://github.com/whitphx/streamlit-webrtc) |
+| **Pose Estimation**   | [MediaPipe](https://mediapipe.dev/) (Pose Landmarker)           |
+| **Computer Vision**   | [OpenCV](https://opencv.org/) (Headless)                        |
+| **AI Coaching (LLM)** | [Groq API](https://groq.com/) — Whisper Large V3                |
+| **Text-to-Speech**    | [gTTS](https://pypi.org/project/gTTS/) (Google Text-to-Speech)  |
+| **Data Processing**   | [Pandas](https://pandas.pydata.org/)                            |
+| **Database**          | SQLite3 (via Python's built-in `sqlite3`)                       |
+| **Config Management** | [python-dotenv](https://pypi.org/project/python-dotenv/)        |
+| **Language**          | Python 3.10+                                                    |
+| **Landing Page**      | HTML5, CSS3, deployed on [Vercel](https://vercel.com/)          |
 
 ---
 
