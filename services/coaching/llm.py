@@ -20,7 +20,7 @@ class LLMCoach:
         ]
 
         response = self.client.chat.completions.create(
-            model="whisper-large-v3",
+            model="qwen/qwen3.8-27b",
             messages=messages,
             temperature=0.4,
         )
