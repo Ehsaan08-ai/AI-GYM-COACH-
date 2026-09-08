@@ -9,6 +9,20 @@ from services.config.workout_config import EXERCISE_OPTIONS
 from services.persistence.exercise_repository import init_db
 from services.state.session_defaults import initial_session_defaults
 from services.ui.style_loader import inject_local_font, inject_webrtc_styles, load_css
+
+import sys
+import subprocess
+
+# Ensure headless OpenCV is active even if MediaPipe forced the GUI version
+try:
+    import cv2
+except ImportError as e:
+    if "libGL.so.1" in str(e):
+        subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python", "opencv-contrib-python"], check=False)
+        subprocess.run([sys.executable, "-m", "pip", "install", "--no-deps", "opencv-python-headless==4.10.0.84"], check=False)
+        import cv2
+
+
 from services.vision.exercise_video_processor import VideoProcessorClass
 from services.tracking.metrics import sync_metrics_update
 from services.persistence.exercise_repository import get_users_exercises
